@@ -405,6 +405,7 @@ function downloadJSON() {
       removeAllChildren(dataElement);
       dataElement.appendChild(stockElement);
       document.getElementById("loading-indicator").classList.add("hidden");
+      renderChart();
     })
     .catch((error) => {
       console.error(error);
