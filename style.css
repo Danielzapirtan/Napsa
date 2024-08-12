@@ -1,0 +1,85 @@
+#chart {
+  border: 1px solid #ccc;
+  /* Add a border to the canvas */
+}
+
+th,
+td {
+  border: 2px solid #666;
+}
+
+#loading-indicator {
+  position: fixed;
+  /* Position it over other content */
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  /* Center it on the page */
+  font-size: 24px;
+  color: #333;
+  background-color: rgba(255, 255, 255, 0.8);
+  /* Light background */
+  padding: 10px 20px;
+  border-radius: 5px;
+  z-index: 1000;
+  /* Ensure it's on top */
+}
+
+.hidden {
+  display: none;
+}
+
+button {
+  padding: 10px 20px;
+  background-color: #4CAF50;
+  /* Green color for the button */
+  color: white;
+  border: none;
+  cursor: pointer;
+  /* Indicate clickable button */
+}
+
+#text,
+.hidden {
+  display: none;
+}
+
+#canvas-container {
+  overflow-x: auto;
+}
+
+.tab-container {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.tab-header {
+  display: flex;
+  background-color: #ffaacc00;
+}
+
+.tab {
+  border: 2px;
+  outline: none;
+  background-color: #ffaacc;
+  padding: 10px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.tab.active {
+  background-color: #333;
+}
+
+.tab-content {
+  padding: 20px;
+}
+
+.tab-pane {
+  display: none;
+}
+
+.tab-pane.active {
+  display: block;
+}
