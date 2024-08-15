@@ -116,8 +116,8 @@ function makeExit1() {
   const buyRow = {
     date: buyDate,
     soldInit: soldInit.toFixed(2),
-    credit: credit.toFixed(2),
-    debit: debit.toFixed(2),
+    sell: credit.toFixed(2),
+    buy: debit.toFixed(2),
     soldFinal: soldFinal.toFixed(2)
   };
   table.push(buyRow);
@@ -130,8 +130,8 @@ function makeExit1() {
   const sellRow = {
     date: stockData[tradeIndex].date,
     soldInit: soldInit.toFixed(2),
-    credit: credit.toFixed(2),
-    debit: debit.toFixed(2),
+    sell: credit.toFixed(2),
+    buy: debit.toFixed(2),
     soldFinal: soldFinal.toFixed(2)
   };
   table.push(sellRow);
@@ -147,8 +147,8 @@ function makeExit2() {
   const buyRow = {
     date: buyDate,
     soldInit: soldInit.toFixed(2),
-    credit: credit.toFixed(2),
-    debit: debit.toFixed(2),
+    sell: credit.toFixed(2),
+    buy: debit.toFixed(2),
     soldFinal: soldFinal.toFixed(2)
   };
   table.push(buyRow);
@@ -161,8 +161,8 @@ function makeExit2() {
   const sellRow = {
     date: stockData[tradeIndex].date,
     soldInit: soldInit.toFixed(2),
-    credit: credit.toFixed(2),
-    debit: debit.toFixed(2),
+    sell: credit.toFixed(2),
+    buy: debit.toFixed(2),
     soldFinal: soldFinal.toFixed(2)
   };
   table.push(sellRow);
