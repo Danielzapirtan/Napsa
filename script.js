@@ -2,8 +2,6 @@ const canvas = document.getElementById("chart");
 const context = canvas.getContext("2d");
 let stockData;
 
-downloadJSON();
-
 let amount;
 let buyDate;
 let buyPrice;
@@ -389,16 +387,17 @@ canvas.addEventListener("click", (event) => {
 
 function downloadJSON() {
   document.getElementById("loading-indicator").classList.remove("hidden");
-  //const symbols = ["AAPL.US", "MSFT.US"];
   const symbol = document.getElementById("stockTicker").value;
-  //const r = Math.floor(Math.random() * symbols.length);
-  //const symbol = symbols[r];
-  document.getElementById("symbol").innerHTML = `Ticker: ${symbol}`;
+  const apiTokenMetered = "666d75fac3cab1.49750115";
+  const checked = document.getElementById("useMeteredApiToken").checked;
+  apiToken = "demo";
+  if (checked)
+    apiToken = apiTokenMetered;
   const currDate = new Date();
   const currYear = currDate.getFullYear() - 1;
   const currMonth = currDate.getMonth() + 1;
   const currDayOfMonth = currDate.getDate();
-  const url = `https://eodhd.com/api/eod/${symbol}?api_token=demo&fmt=json&from=${currYear}-${currMonth}-${currDayOfMonth}`;
+  const url = `https://eodhd.com/api/eod/${symbol}?api_token=${apiToken}&fmt=json&from=${currYear}-${currMonth}-${currDayOfMonth}`;
   fetch(url)
     .then((response) => {
       return response.text();
