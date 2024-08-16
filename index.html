@@ -13,12 +13,11 @@
   <h1>
     Stock Chart
   </h1>
-  <select id="stockTicker" onchange="downloadJSON()">
-    <option value="AAPL.US">AAPL.US</option>
-    <option value="MSFT.US">MSFT.US</option>
-  </select>
+  <input type="checkbox" id="useMeteredApiToken">
+  <label for="useMeteredApiToken">Use metered API token (Do not abuse)</label><br><br>
+  <label for="stockTicker">Ticker:</label>
+  <input type="text" id="stockTicker" onchange="downloadJSON()"><br><br>
   <div id="loading-indicator" class="hidden">Loading...</div>
-  <div id="symbol"></div><br>
   <div class="tab-container">
     <div class="tab-header">
       <button class="tab" data-tab="Strategy">Strategy</button>
