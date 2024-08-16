@@ -4,6 +4,7 @@ let stockData;
 
 downloadJSON();
 
+let amount;
 let buyDate;
 let buyPrice;
 let expectEntry;
@@ -104,12 +105,13 @@ function makeEntry() {
   stopLoss = stockData[tradeIndex - 1].low;
   buyPrice = stockData[tradeIndex].open;
   buyDate = stockData[tradeIndex].date;
+  amount = soldFinal * 0.05 / buyPrice;
 }
 
 // We stop loss
 function makeExit1() {
   // Register entry point
-  let debit = buyPrice;
+  let debit = buyPrice * amount;
   let credit = 0;
   let soldInit = soldFinal;
   soldFinal += credit - debit;
@@ -123,7 +125,7 @@ function makeExit1() {
   table.push(buyRow);
 
   // Register exit point
-  credit = stopLoss;
+  credit = stopLoss * amount;
   debit = 0;
   soldInit = soldFinal;
   soldFinal += credit - debit;
@@ -141,7 +143,7 @@ function makeExit1() {
 function makeExit2() {
   // Register entry point
   let credit = 0;
-  let debit = buyPrice;
+  let debit = buyPrice * amount;
   let soldInit = soldFinal;
   soldFinal += credit - debit;
   const buyRow = {
@@ -154,7 +156,7 @@ function makeExit2() {
   table.push(buyRow);
 
   // Register exit point
-  credit = stockData[tradeIndex].close;
+  credit = stockData[tradeIndex].close * amount;
   debit = 0;
   soldInit = soldFinal;
   soldFinal += credit - debit;
@@ -190,7 +192,7 @@ function tryExit() {
 
 // Apply our strategy system
 function getTable() {
-  soldFinal = 0;
+  soldFinal = 10000.0;
   expectEntry = true;
   table = [];
   for (tradeIndex = 0; tradeIndex < stockData.length; tradeIndex++) {
@@ -387,7 +389,10 @@ canvas.addEventListener("click", (event) => {
 
 function downloadJSON() {
   document.getElementById("loading-indicator").classList.remove("hidden");
-  const symbol = "AAPL.US";
+  //const symbols = ["AAPL.US", "MSFT.US"];
+  const symbol = document.getElementById("stockTicker").value;
+  //const r = Math.floor(Math.random() * symbols.length);
+  //const symbol = symbols[r];
   document.getElementById("symbol").innerHTML = `Ticker: ${symbol}`;
   const currDate = new Date();
   const currYear = currDate.getFullYear() - 1;
