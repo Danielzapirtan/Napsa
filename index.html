@@ -13,6 +13,10 @@
   <h1>
     Stock Chart
   </h1>
+  <select id="stockTicker" onchange="downloadJSON()">
+    <option value="AAPL.US">AAPL.US</option>
+    <option value="MSFT.US">MSFT.US</option>
+  </select>
   <div id="loading-indicator" class="hidden">Loading...</div>
   <div id="symbol"></div><br>
   <div class="tab-container">
