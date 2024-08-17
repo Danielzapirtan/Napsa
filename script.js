@@ -413,5 +413,7 @@ function downloadJSON() {
     })
     .catch((error) => {
       console.error(error);
+      document.getElementById("loading-indicator").classList.add("hidden");
+      alert("Cannot fetch this with token `demo'." + error + "Consider using metered token or another ticker");
     });
 }
