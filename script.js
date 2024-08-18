@@ -406,7 +406,7 @@ function downloadJSON() {
   const currMonth = currDate.getMonth() + 1;
   const currDayOfMonth = currDate.getDate();
   const url = `https://eodhd.com/api/eod/${symbol}?api_token=${apiToken}&fmt=json&from=${currYear}-${currMonth}-${currDayOfMonth}`;
-  devlog(`${url}`);
+  devlog(symbol + " " + currDate);
   fetch(url)
     .then((response) => {
       return response.text();
