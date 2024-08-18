@@ -15,6 +15,10 @@ let tradeIndex;
 document.getElementById("stockTicker").value = "AAPL.US";
 downloadJSON();
 
+function devlog(message) {
+  log += message;
+}
+
 function createTable(jsonString) {
   // Parse the JSON string into a JavaScript object
   const jsonData = JSON.parse(jsonString);
@@ -418,6 +422,6 @@ function downloadJSON() {
     .catch((error) => {
       console.error(error);
       document.getElementById("loading-indicator").classList.add("hidden");
-      log.innerHTML += "Cannot fetch this with token `demo'." + error + "Consider using metered token or another ticker";
+      devlog("Cannot fetch this with token `demo'." + error + "Consider using metered token or another ticker");
     });
 }
