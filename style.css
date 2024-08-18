@@ -50,5 +50,6 @@ button {
 }
 
 #Strategy, #Data {
+  height: 384px;
   overflow-y: auto;
 }
