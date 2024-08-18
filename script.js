@@ -12,6 +12,9 @@ let stopLoss;
 let table;
 let tradeIndex;
 
+const tabs = document.querySelectorAll(".tab");
+const tabContent = document.querySelectorAll(".tab-pane");
+
 // Initial tab
 showTab(0);
 
@@ -53,9 +56,6 @@ function createTable(jsonString) {
 
   return table;
 }
-
-const tabs = document.querySelectorAll(".tab");
-const tabContent = document.querySelectorAll(".tab-pane");
 
 function showTab(n) {
   tabs.forEach((tab) => {
