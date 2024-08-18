@@ -11,7 +11,7 @@ let soldFinal;
 let stopLoss;
 let table;
 let tradeIndex;
-
+log.innerHTML = ``;
 const tabs = document.querySelectorAll(".tab");
 const tabContent = document.querySelectorAll(".tab-pane");
 
