@@ -12,6 +12,9 @@ let stopLoss;
 let table;
 let tradeIndex;
 
+// Initial tab
+showTab(0);
+
 document.getElementById("stockTicker").value = "AAPL.US";
 downloadJSON();
 
@@ -64,9 +67,6 @@ function showTab(n) {
   });
   tabContent[n].classList.add("active");
 }
-
-// Initial tab
-showTab(0);
 
 tabs.forEach((tab, index) => {
   tab.addEventListener("click", () => {
