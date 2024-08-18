@@ -1,5 +1,6 @@
 const canvas = document.getElementById("chart");
 const context = canvas.getContext("2d");
+const log = document.getElementById("log");
 let stockData;
 
 let amount;
@@ -417,6 +418,6 @@ function downloadJSON() {
     .catch((error) => {
       console.error(error);
       document.getElementById("loading-indicator").classList.add("hidden");
-      alert("Cannot fetch this with token `demo'." + error + "Consider using metered token or another ticker");
+      log.innerHTML += "Cannot fetch this with token `demo'." + error + "Consider using metered token or another ticker";
     });
 }
