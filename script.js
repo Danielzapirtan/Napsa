@@ -212,7 +212,6 @@ function getStockData(jsonString) {
 }
 
 function renderChart() {
-  //stockData = getStockData();
   context.clearRect(0, 0, canvas.width, canvas.height);
   context.fillStyle = "#aaaa55";
   context.fillRect(0, 0, canvas.width, canvas.height);
@@ -420,6 +419,6 @@ function downloadJSON() {
     .catch((error) => {
       console.error(error);
       document.getElementById("loading-indicator").classList.add("hidden");
-      devlog("Cannot fetch " + url + " with token `demo'." + error + "Consider using metered token or another ticker");
+      devlog("Unsupported browser");
     });
 }
