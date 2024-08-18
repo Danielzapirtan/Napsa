@@ -14,7 +14,7 @@ let tradeIndex;
 log.innerHTML = ``;
 const tabs = document.querySelectorAll(".tab");
 const tabContent = document.querySelectorAll(".tab-pane");
-
+showTab(0);
 document.getElementById("stockTicker").value = "AAPL.US";
 downloadJSON();
 
