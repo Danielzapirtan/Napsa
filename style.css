@@ -84,4 +84,6 @@ button {
 
 .tab-pane.active {
   display: block;
+  height: 240px;
+  overflow-y: auto;
 }
