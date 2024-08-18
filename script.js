@@ -1,5 +1,6 @@
 const canvas = document.getElementById("chart");
 const context = canvas.getContext("2d");
+const log = document.getElementById("log");
 let stockData;
 
 let amount;
@@ -11,8 +12,12 @@ let stopLoss;
 let table;
 let tradeIndex;
 
-document.getElementById("stockTicker").value = "AAPL";
+document.getElementById("stockTicker").value = "AAPL.US";
 downloadJSON();
+
+function devlog(message) {
+  log.innerHTML += message;
+}
 
 function createTable(jsonString) {
   // Parse the JSON string into a JavaScript object
@@ -400,7 +405,8 @@ function downloadJSON() {
   const currYear = currDate.getFullYear() - 1;
   const currMonth = currDate.getMonth() + 1;
   const currDayOfMonth = currDate.getDate();
-  const url = `https://eodhd.com/api/eod/${symbol}?api_token=${apiToken}&fmt=json&from=${currYear}-${currMonth}-${currDayOfMonth}`;
+  const date = "2023-08-18";
+  const url = `https://eodhd.com/api/eod/${symbol}?api_token=${apiToken}&fmt=json&from=${date}`;
   fetch(url)
     .then((response) => {
       return response.text();
@@ -417,6 +423,6 @@ function downloadJSON() {
     .catch((error) => {
       console.error(error);
       document.getElementById("loading-indicator").classList.add("hidden");
-      alert("Cannot fetch this with token `demo'." + error + "Consider using metered token or another ticker");
+      devlog("Cannot fetch " + url + " with token `demo'." + error + "Consider using metered token or another ticker");
     });
 }
