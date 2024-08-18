@@ -390,7 +390,7 @@ function downloadJSON() {
   const symbol = document.getElementById("stockTicker").value;
   const apiTokenMetered = "666d75fac3cab1.49750115";
   const checked = document.getElementById("useMeteredApiToken").checked;
-  apiToken = "demo";
+  let apiToken = "demo";
   if (checked)
     apiToken = apiTokenMetered;
   const currDate = new Date();
