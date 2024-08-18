@@ -389,7 +389,7 @@ function downloadJSON() {
   const url = `https://eodhd.com/api/eod/${symbol}?api_token=${apiToken}&fmt=json&from=${date}`;
 
   // XMLHttpRequest for older browsers (fallback)
-  if (!window.fetch || True) {
+  if (!window.fetch) {
     const xhr = new XMLHttpRequest();
     xhr.open("GET", url);
     xhr.onload = function () {
