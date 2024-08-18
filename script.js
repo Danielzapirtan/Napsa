@@ -407,7 +407,6 @@ function downloadJSON() {
   const currDayOfMonth = currDate.getDate();
   const date = "2023-08-18";
   const url = `https://eodhd.com/api/eod/${symbol}?api_token=${apiToken}&fmt=json&from=${date}`;
-  devlog(url);
   fetch(url)
     .then((response) => {
       return response.text();
@@ -424,6 +423,6 @@ function downloadJSON() {
     .catch((error) => {
       console.error(error);
       document.getElementById("loading-indicator").classList.add("hidden");
-      devlog("Cannot fetch this with token `demo'." + error + "Consider using metered token or another ticker");
+      devlog("Cannot fetch " + url + " with token `demo'." + error + "Consider using metered token or another ticker");
     });
 }
