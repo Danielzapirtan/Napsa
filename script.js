@@ -1,4 +1,4 @@
-f6const canvas = document.getElementById("chart");
+const canvas = document.getElementById("chart");
 const context = canvas.getContext("2d");
 const log = document.getElementById("log");
 let stockData;
@@ -406,7 +406,7 @@ function downloadJSON() {
   const currMonth = currDate.getMonth() + 1;
   const currDayOfMonth = currDate.getDate();
   const url = `https://eodhd.com/api/eod/${symbol}?api_token=${apiToken}&fmt=json&from=${currYear}-${currMonth}-${currDayOfMonth}`;
-  //devlog(symbol + " " + currDate);
+  devlog(symbol + " " + currDate);
   fetch(url)
     .then((response) => {
       return response.text();
