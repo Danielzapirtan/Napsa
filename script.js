@@ -181,7 +181,7 @@ function tryEntry() {
 
 // It is time to sell
 function tryExit() {
-  let exitP = condExit();
+  const exitP = condExit();
   if (exitP == 1) {
     makeExit1();
     expectEntry = true;
