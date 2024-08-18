@@ -11,6 +11,8 @@ let stopLoss;
 let table;
 let tradeIndex;
 
+alert("Syntax ok");
+
 function createTable(jsonString) {
   // Parse the JSON string into a JavaScript object
   const jsonData = JSON.parse(jsonString);
