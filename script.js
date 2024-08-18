@@ -12,6 +12,8 @@ let stopLoss;
 let table;
 let tradeIndex;
 log.innerHTML = ``;
+const tabs = document.querySelectorAll(".tab");
+const tabContent = document.querySelectorAll(".tab-pane");
 
 document.getElementById("stockTicker").value = "AAPL.US";
 downloadJSON();
@@ -51,6 +53,23 @@ function createTable(jsonString) {
 
   return table;
 }
+
+function showTab(n) {
+  tabs.forEach((tab) => {
+    tab.classList.remove("active");
+  });
+  tabs[n].classList.add("active");
+  tabContent.forEach((content) => {
+    content.classList.remove("active");
+  });
+  tabContent[n].classList.add("active");
+}
+
+tabs.forEach((tab, index) => {
+  tab.addEventListener("click", () => {
+    showTab(index);
+  });
+});
 
 // TODO Increase readability
 
