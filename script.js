@@ -16,7 +16,7 @@ document.getElementById("stockTicker").value = "AAPL.US";
 downloadJSON();
 
 function devlog(message) {
-  log += message;
+  log.innerHTML += message;
 }
 
 function createTable(jsonString) {
