@@ -11,7 +11,8 @@ let stopLoss;
 let table;
 let tradeIndex;
 
-alert("Syntax ok");
+document.getElementById("stockTicker").value = "AAPL";
+downloadJSON();
 
 function createTable(jsonString) {
   // Parse the JSON string into a JavaScript object
