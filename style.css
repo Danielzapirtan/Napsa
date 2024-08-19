@@ -54,6 +54,8 @@ button {
   border: 1px solid #ccc;
   border-radius: 5px;
   overflow: hidden;
+  height: 640px;
+  overflow-y: auto;
 }
 
 .tab-header {
