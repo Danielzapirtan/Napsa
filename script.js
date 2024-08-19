@@ -390,35 +390,68 @@ canvas.addEventListener("click", (event) => {
 });
 
 function downloadJSON() {
-  document.getElementById("loading-indicator").classList.remove("hidden");
+  // Show loading indicator
+  document.getElementById("loading-indicator").style.display = "block"; // for older browsers without classList
+
   const symbol = document.getElementById("stockTicker").value;
   const apiTokenMetered = "666d75fac3cab1.49750115";
   const checked = document.getElementById("useMeteredApiToken").checked;
   let apiToken = "demo";
-  if (checked)
+  if (checked) {
     apiToken = apiTokenMetered;
+  }
   const currDate = new Date();
   const currYear = currDate.getFullYear() - 1;
   const currMonth = currDate.getMonth() + 1;
   const currDayOfMonth = currDate.getDate();
   const date = "2023-08-18";
   const url = `https://eodhd.com/api/eod/${symbol}?api_token=${apiToken}&fmt=json&from=${date}`;
-  fetch(url)
-    .then((response) => {
-      return response.text();
-    })
-    .then((data) => {
-      stockData = JSON.parse(data);
-      const stockElement = createTable(data);
-      const dataElement = document.getElementById("Data");
-      removeAllChildren(dataElement);
-      dataElement.appendChild(stockElement);
-      document.getElementById("loading-indicator").classList.add("hidden");
-      renderChart();
-    })
-    .catch((error) => {
-      console.error(error);
-      document.getElementById("loading-indicator").classList.add("hidden");
+
+  // XMLHttpRequest for older browsers (fallback)
+  if (!window.fetch) {
+    const xhr = new XMLHttpRequest();
+    xhr.open("GET", url);
+    xhr.onload = function () {
+      if (xhr.status === 200) {
+        const data = xhr.responseText;
+        stockData = JSON.parse(data);
+        const stockElement = createTable(data);
+        const dataElement = document.getElementById("Data");
+        removeAllChildren(dataElement);
+        dataElement.appendChild(stockElement);
+        document.getElementById("loading-indicator").style.display = "none";
+        renderChart();
+      } else {
+        console.error("Error:", xhr.statusText);
+        document.getElementById("loading-indicator").style.display = "none";
+        devlog("Unsupported browser");
+      }
+    };
+    xhr.onerror = function () {
+      console.error("Network Error");
+      document.getElementById("loading-indicator").style.display = "none";
       devlog("Unsupported browser");
-    });
+    };
+    xhr.send();
+  } else {
+    // Use fetch for modern browsers
+    fetch(url)
+      .then((response) => {
+        return response.text();
+      })
+      .then((data) => {
+        stockData = JSON.parse(data);
+        const stockElement = createTable(data);
+        const dataElement = document.getElementById("Data");
+        removeAllChildren(dataElement);
+        dataElement.appendChild(stockElement);
+        document.getElementById("loading-indicator").style.display = "none";
+        renderChart();
+      })
+      .catch((error) => {
+        console.error(error);
+        document.getElementById("loading-indicator").style.display = "none";
+        devlog("Unsupported browser");
+      });
+  }
 }
