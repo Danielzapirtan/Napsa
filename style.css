@@ -5,6 +5,8 @@
 
 th,
 td {
+  text-align: center;
+  vertical-align: middle;
   border: 2px solid #666;
 }
 
@@ -39,7 +41,6 @@ button {
   /* Indicate clickable button */
 }
 
-#text,
 .hidden {
   display: none;
 }
@@ -48,38 +49,7 @@ button {
   overflow-x: auto;
 }
 
-.tab-container {
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  overflow: hidden;
-}
-
-.tab-header {
-  display: flex;
-  background-color: #ffaacc00;
-}
-
-.tab {
-  border: 2px;
-  outline: none;
-  background-color: #ffaacc;
-  padding: 10px;
-  cursor: pointer;
-  transition: 0.3s;
-}
-
-.tab.active {
-  background-color: #333;
-}
-
-.tab-content {
-  padding: 20px;
-}
-
-.tab-pane {
-  display: none;
-}
-
-.tab-pane.active {
-  display: block;
+#Strategy, #Data {
+  height: 384px;
+  overflow-y: auto;
 }

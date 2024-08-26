@@ -13,26 +13,19 @@
   <h1>
     Stock Chart
   </h1>
+  <div id="log">Unsupported browser</div>
+  <input type="checkbox" id="useMeteredApiToken">
+  <label for="useMeteredApiToken">Use metered API token (Do not abuse)</label><br><br>
+  <label for="stockTicker">Ticker:</label>
+  <input type="text" id="stockTicker" onchange="downloadJSON()"><br><br>
   <div id="loading-indicator" class="hidden">Loading...</div>
-  <div id="symbol"></div><br>
-  <div class="tab-container">
-    <div class="tab-header">
-      <button class="tab" data-tab="Strategy">Strategy</button>
-      <button class="tab" data-tab="Data">Data</button>
-      <button class="tab" data-tab="Chart">Chart</button>
-    </div>
-    <div class="tab-content">
-      <div id="Strategy" class="tab-pane active">
-      </div>
-      <div id="Data" class="tab-pane">
-      </div>
-      <div id="Chart" class="tab-pane">
+      <div id="Strategy"></div>
+      <div id="Data"></div>
+      <div id="Chart">
         <div id="canvas-container">
           <canvas id="chart" width="1280" height="384"></canvas>
         </div>
       </div>
-    </div>
-  </div>
   <script src="script.js"></script>
 </body>
 
