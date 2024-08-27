@@ -404,7 +404,7 @@ function downloadJSON() {
   const currYear = currDate.getFullYear() - 1;
   const currMonth = currDate.getMonth() + 1;
   const currDayOfMonth = currDate.getDate();
-  const date = "2023-08-18";
+  const date = new Date(currYear, currMonth, currDayOfMonth);
   const url = `https://eodhd.com/api/eod/${symbol}?api_token=${apiToken}&fmt=json&from=${date}`;
 
   // XMLHttpRequest for older browsers (fallback)
