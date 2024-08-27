@@ -120,10 +120,10 @@ function makeExit1() {
   soldFinal += credit - debit;
   const buyRow = {
     date: buyDate,
-    soldInit: soldInit.toFixed(2),
-    sell: credit.toFixed(2),
-    buy: debit.toFixed(2),
-    soldFinal: soldFinal.toFixed(2)
+    capital: soldInit.toFixed(2),
+    entry: debit.toFixed(2),
+    exit: credit.toFixed(2),
+    remainingCapital: soldFinal.toFixed(2)
   };
   table.push(buyRow);
 
@@ -134,10 +134,10 @@ function makeExit1() {
   soldFinal += credit - debit;
   const sellRow = {
     date: stockData[tradeIndex].date,
-    soldInit: soldInit.toFixed(2),
-    sell: credit.toFixed(2),
-    buy: debit.toFixed(2),
-    soldFinal: soldFinal.toFixed(2)
+    capital: soldInit.toFixed(2),
+    entry: debit.toFixed(2),
+    exit: credit.toFixed(2),
+    remainingCapital: soldFinal.toFixed(2)
   };
   table.push(sellRow);
 }
@@ -151,10 +151,10 @@ function makeExit2() {
   soldFinal += credit - debit;
   const buyRow = {
     date: buyDate,
-    soldInit: soldInit.toFixed(2),
-    sell: credit.toFixed(2),
-    buy: debit.toFixed(2),
-    soldFinal: soldFinal.toFixed(2)
+    capital: soldInit.toFixed(2),
+    entry: debit.toFixed(2),
+    exit: credit.toFixed(2),
+    remainingCapital: soldFinal.toFixed(2)
   };
   table.push(buyRow);
 
@@ -165,10 +165,10 @@ function makeExit2() {
   soldFinal += credit - debit;
   const sellRow = {
     date: stockData[tradeIndex].date,
-    soldInit: soldInit.toFixed(2),
-    sell: credit.toFixed(2),
-    buy: debit.toFixed(2),
-    soldFinal: soldFinal.toFixed(2)
+    capital: soldInit.toFixed(2),
+    entry: debit.toFixed(2),
+    exit: credit.toFixed(2),
+    remainingCapital: soldFinal.toFixed(2)
   };
   table.push(sellRow);
 }
@@ -204,8 +204,6 @@ function getTable() {
   }
   return JSON.stringify(table);
 }
-
-// Remaining old code
 
 function getStockData(jsonString) {
   return JSON.parse(jsonString);
