@@ -77,6 +77,8 @@ button {
 }
 
 .tab-content {
+  overflow: hidden;
+  height: 320px;
   padding: 20px;
   overflow-y: auto;
 }
