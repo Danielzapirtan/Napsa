@@ -19,7 +19,7 @@ document.getElementById("stockTicker").value = "AAPL.US";
 downloadJSON();
 
 function devlog(message) {
-  log.innerHTML += message;
+  log.innerHTML = message;
 }
 
 function createTable(jsonString) {
@@ -120,10 +120,10 @@ function makeExit1() {
   soldFinal += credit - debit;
   const buyRow = {
     date: buyDate,
-    soldInit: soldInit.toFixed(2),
-    sell: credit.toFixed(2),
-    buy: debit.toFixed(2),
-    soldFinal: soldFinal.toFixed(2)
+    capital: soldInit.toFixed(2),
+    entry: debit.toFixed(2),
+    exit: credit.toFixed(2),
+    remainingCapital: soldFinal.toFixed(2)
   };
   table.push(buyRow);
 
@@ -134,10 +134,10 @@ function makeExit1() {
   soldFinal += credit - debit;
   const sellRow = {
     date: stockData[tradeIndex].date,
-    soldInit: soldInit.toFixed(2),
-    sell: credit.toFixed(2),
-    buy: debit.toFixed(2),
-    soldFinal: soldFinal.toFixed(2)
+    capital: soldInit.toFixed(2),
+    entry: debit.toFixed(2),
+    exit: credit.toFixed(2),
+    remainingCapital: soldFinal.toFixed(2)
   };
   table.push(sellRow);
 }
@@ -151,10 +151,10 @@ function makeExit2() {
   soldFinal += credit - debit;
   const buyRow = {
     date: buyDate,
-    soldInit: soldInit.toFixed(2),
-    sell: credit.toFixed(2),
-    buy: debit.toFixed(2),
-    soldFinal: soldFinal.toFixed(2)
+    capital: soldInit.toFixed(2),
+    entry: debit.toFixed(2),
+    exit: credit.toFixed(2),
+    remainingCapital: soldFinal.toFixed(2)
   };
   table.push(buyRow);
 
@@ -165,10 +165,10 @@ function makeExit2() {
   soldFinal += credit - debit;
   const sellRow = {
     date: stockData[tradeIndex].date,
-    soldInit: soldInit.toFixed(2),
-    sell: credit.toFixed(2),
-    buy: debit.toFixed(2),
-    soldFinal: soldFinal.toFixed(2)
+    capital: soldInit.toFixed(2),
+    entry: debit.toFixed(2),
+    exit: credit.toFixed(2),
+    remainingCapital: soldFinal.toFixed(2)
   };
   table.push(sellRow);
 }
@@ -204,8 +204,6 @@ function getTable() {
   }
   return JSON.stringify(table);
 }
-
-// Remaining old code
 
 function getStockData(jsonString) {
   return JSON.parse(jsonString);
@@ -404,7 +402,7 @@ function downloadJSON() {
   const currYear = currDate.getFullYear() - 1;
   const currMonth = currDate.getMonth() + 1;
   const currDayOfMonth = currDate.getDate();
-  const date = "2023-08-18";
+  const date = `${currYear}-${currMonth}-${currDayOfMonth}`;
   const url = `https://eodhd.com/api/eod/${symbol}?api_token=${apiToken}&fmt=json&from=${date}`;
 
   // XMLHttpRequest for older browsers (fallback)
@@ -451,7 +449,7 @@ function downloadJSON() {
       .catch((error) => {
         console.error(error);
         document.getElementById("loading-indicator").style.display = "none";
-        devlog("Unsupported browser");
+        alert("Load failed!");
       });
   }
 }
