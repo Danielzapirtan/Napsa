@@ -19,7 +19,7 @@ document.getElementById("stockTicker").value = "AAPL.US";
 downloadJSON();
 
 function devlog(message) {
-  log.innerHTML += message;
+  log.innerHTML = message;
 }
 
 function createTable(jsonString) {
@@ -449,7 +449,6 @@ function downloadJSON() {
       .catch((error) => {
         console.error(error);
         document.getElementById("loading-indicator").style.display = "none";
-        devlog("Unsupported browser");
       });
   }
 }
