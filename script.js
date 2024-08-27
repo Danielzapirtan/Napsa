@@ -449,6 +449,7 @@ function downloadJSON() {
       .catch((error) => {
         console.error(error);
         document.getElementById("loading-indicator").style.display = "none";
+        alert("Load failed!");
       });
   }
 }
