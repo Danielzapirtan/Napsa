@@ -11,6 +11,7 @@ let remainingCapital;
 let stopLossPrice;
 let table;
 let currentIndex;
+header.write(new Date);
 log.innerHTML = ``;
 const tabs = document.querySelectorAll(".tab");
 const tabContent = document.querySelectorAll(".tab-pane");
