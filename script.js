@@ -392,7 +392,7 @@ function downloadJSON() {
   // Show loading indicator
   document.getElementById("loading-indicator").style.display = "block"; // for older browsers without classList
 
-  const symbol = document.getElementById("stockTicker").value;
+  const symbol = document.getElementById("stock-picker").value;
   const apiTokenMetered = "666d75fac3cab1.49750115";
   const checked = document.getElementById("useMeteredApiToken").checked;
   let apiToken = "demo";
