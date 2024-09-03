@@ -16,7 +16,6 @@ const tabs = document.querySelectorAll(".tab");
 const tabContent = document.querySelectorAll(".tab-pane");
 showTab(0);
 document.getElementById("useMeteredApiToken").checked = false;
-document.getElementById("stock-picker").value = "AAPL";
 downloadJSON();
 
 function devlog(message) {
