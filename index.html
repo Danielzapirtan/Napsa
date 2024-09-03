@@ -17,8 +17,10 @@
   </header>
   <main>
   <div id="log">Load failed</div>
+  <div class="hidden">
   <input type="checkbox" id="useMeteredApiToken">
   <label for="useMeteredApiToken">Use metered API token (Do not abuse)</label><br><br>
+  </div>
   <label for="stockTicker">Ticker:</label>
   <input type="text" id="stockTicker" onchange="downloadJSON()"><br><br>
   <div id="loading-indicator" class="hidden">Loading...</div>
