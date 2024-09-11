@@ -73,9 +73,10 @@ tabs.forEach((tab, index) => {
 // TODO Increase readability
 
 function ma(dayCount) {
-	if (dayCount == 0)
-		return 0;
-	else return (ma(dayCount - 1) * (dayCount - 1) + stockData[currentIndex - dayCount].open) / dayCount;
+	if (dayCount <= 1)
+		return stockData[currentIndex - 1].open;
+	else return (ma(dayCount - 1) * (dayCount - 1) \
+	+ stockData[currentIndex - dayCount].open) / dayCount;
 }
 
 // Whether we may buy
@@ -84,7 +85,7 @@ function condEntry() {
 	  const shortMA = ma(50);
 	  const longMA = ma(200);
 	  if (shortMA > longMA)
-		  return 0;
+		  return 1;
   } catch { }
   return 0;
 }
@@ -95,7 +96,7 @@ function condExit() {
 	  const shortMA = ma(50);
 	  const longMA = ma(200);
 	  if (shortMA < longMA)
-		  return 0;
+		  return 1;
   } catch { }
   return 0;
 }
