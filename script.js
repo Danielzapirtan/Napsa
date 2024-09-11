@@ -73,10 +73,10 @@ tabs.forEach((tab, index) => {
 // TODO Increase readability
 
 function ma(dayCount) {
-	if (dayCount <= 1)
-		return stockData[currentIndex - 1].open;
-	else return (ma(dayCount - 1) * (dayCount - 1) \
-	+ stockData[currentIndex - dayCount].open) / dayCount;
+	let sum = 0;
+	for (let count = 0; count < dayCount; count++)
+		sum += stockData[currentIndex - count].open;
+	return sum / dayCount;
 }
 
 // Whether we may buy
