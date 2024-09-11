@@ -8,7 +8,6 @@ let entryDate;
 let entryPrice;
 let isEntryExpected;
 let remainingCapital;
-let stopLossPrice;
 let table;
 let currentIndex;
 log.innerHTML = ``;
@@ -153,13 +152,13 @@ function tryEntry() {
 function tryExit() {
   const exitP = condExit();
   if (exitP == 1) {
-    makeExit1();
+    makeExit();
     isEntryExpected = true;
   }
 }
 
 // Apply our strategy system
-function GetTable() {
+function getTable() {
   remainingCapital = 10000.0;
   isEntryExpected = true;
   table = [];
