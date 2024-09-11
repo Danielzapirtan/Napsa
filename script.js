@@ -73,14 +73,19 @@ tabs.forEach((tab, index) => {
 
 // TODO Increase readability
 
+function ma(dayCount) {
+	if (dayCount == 0)
+		return 0;
+	else return (ma(dayCount - 1) * (dayCount - 1) + stockData[currentIndex - dayCount].open) / dayCount;
+}
+
 // Whether we may buy
 function condEntry() {
   try {
-    // If second green bar
-    if (stockData[currentIndex].low > stockData[currentIndex - 1].low)
-      if (stockData[currentIndex - 1].low > stockData[currentIndex - 2].low)
-        if (stockData[currentIndex - 2].low < stockData[currentIndex - 3].low)
-          return 1;
+	  const shortMA = ma(50);
+	  const longMA = ma(200);
+	  if (shortMA > longMA)
+		  return 0;
   } catch { }
   return 0;
 }
@@ -88,15 +93,10 @@ function condEntry() {
 // Whether we may sell
 function condExit() {
   try {
-    // On SL (stop loss)
-    if (stockData[currentIndex].low < stopLossPrice) return 1;
-  } catch { }
-  try {
-    // On TP (take profit)
-    // If red bar
-    if (stockData[currentIndex].low < stockData[currentIndex - 1].low)
-      if (stockData[currentIndex - 1].low > stockData[currentIndex - 2].low)
-        return 2;
+	  const shortMA = ma(50);
+	  const longMA = ma(200);
+	  if (shortMA < longMA)
+		  return 0;
   } catch { }
   return 0;
 }
@@ -105,14 +105,13 @@ function condExit() {
 function makeEntry() {
   // No table record: we account entryPrice at selling time
   // We do not want to remain with an open entry
-  stopLossPrice = stockData[currentIndex - 1].low;
   entryPrice = stockData[currentIndex].open;
   entryDate = stockData[currentIndex].date;
   positionSize = remainingCapital * 0.05 / entryPrice;
 }
 
 // We stop loss
-function makeExit1() {
+function makeExit() {
   // Register entry point
   let debit = entryPrice * positionSize;
   let credit = 0;
@@ -128,38 +127,7 @@ function makeExit1() {
   table.push(buyRow);
 
   // Register exit point
-  credit = stopLossPrice * positionSize;
-  debit = 0;
-  soldInit = remainingCapital;
-  remainingCapital += credit - debit;
-  const sellRow = {
-    date: stockData[currentIndex].date,
-    capital: soldInit.toFixed(2),
-    entry: debit.toFixed(2),
-    exit: credit.toFixed(2),
-    remainingCapital: remainingCapital.toFixed(2)
-  };
-  table.push(sellRow);
-}
-
-// We take profit
-function makeExit2() {
-  // Register entry point
-  let credit = 0;
-  let debit = entryPrice * positionSize;
-  let soldInit = remainingCapital;
-  remainingCapital += credit - debit;
-  const buyRow = {
-    date: entryDate,
-    capital: soldInit.toFixed(2),
-    entry: debit.toFixed(2),
-    exit: credit.toFixed(2),
-    remainingCapital: remainingCapital.toFixed(2)
-  };
-  table.push(buyRow);
-
-  // Register exit point
-  credit = stockData[currentIndex].close * positionSize;
+  credit = close * positionSize;
   debit = 0;
   soldInit = remainingCapital;
   remainingCapital += credit - debit;
@@ -187,18 +155,15 @@ function tryExit() {
   if (exitP == 1) {
     makeExit1();
     isEntryExpected = true;
-  } else if (exitP == 2) {
-    makeExit2();
-    isEntryExpected = true;
   }
 }
 
 // Apply our strategy system
-function getTable() {
+function GetTable() {
   remainingCapital = 10000.0;
   isEntryExpected = true;
   table = [];
-  for (currentIndex = 0; currentIndex < stockData.length; currentIndex++) {
+  for (currentIndex = 200; currentIndex < stockData.length; currentIndex++) {
     if (isEntryExpected) tryEntry();
     else tryExit();
   }
