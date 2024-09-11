@@ -72,18 +72,22 @@ tabs.forEach((tab, index) => {
 
 // TODO Increase readability
 
-function ma(dayCount) {
+function ma(dayCount, yest) {
 	let sum = 0;
 	for (let count = 0; count < dayCount; count++)
-		sum += stockData[currentIndex - count].open;
+		sum += stockData[currentIndex - count - yest].open;
 	return sum / dayCount;
 }
 
 // Whether we may buy
 function condEntry() {
   try {
-	  const shortMA = ma(12)
-	  const longMA = ma(26);
+	  let shortMA = ma(shorts, 1);
+	  let longMA = ma(longs, 1);
+	  if (shortMA > longMA)
+		  return 0;
+	  shortMA = ma(shorts, 0);
+	  longMA = ma(longs, 1);
 	  if (shortMA > longMA)
 		  return 1;
   } catch { }
@@ -93,8 +97,12 @@ function condEntry() {
 // Whether we may sell
 function condExit() {
   try {
-	  const shortMA = ma(12);
-	  const longMA = ma(26);
+	  let shortMA = ma(shorts, 1);
+	  let longMA = ma(longs, 1);
+	  if (shortMA < longMA)
+		  return 0;
+	  shortMA = ma(shorts, 0);
+	  longMA = ma(longs, 1);
 	  if (shortMA < longMA)
 		  return 1;
   } catch { }
@@ -163,7 +171,7 @@ function getTable() {
   remainingCapital = 10000.0;
   isEntryExpected = true;
   table = [];
-  for (currentIndex = 27; currentIndex < stockData.length; currentIndex++) {
+  for (currentIndex = longs + 1; currentIndex < stockData.length; currentIndex++) {
     if (isEntryExpected) tryEntry();
     else tryExit();
   }
