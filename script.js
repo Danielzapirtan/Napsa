@@ -82,8 +82,8 @@ function ma(dayCount) {
 // Whether we may buy
 function condEntry() {
   try {
-	  const shortMA = ma(50);
-	  const longMA = ma(200);
+	  const shortMA = ma(12)
+	  const longMA = ma(26);
 	  if (shortMA > longMA)
 		  return 1;
   } catch { }
@@ -93,8 +93,8 @@ function condEntry() {
 // Whether we may sell
 function condExit() {
   try {
-	  const shortMA = ma(50);
-	  const longMA = ma(200);
+	  const shortMA = ma(12);
+	  const longMA = ma(26);
 	  if (shortMA < longMA)
 		  return 1;
   } catch { }
@@ -163,7 +163,7 @@ function getTable() {
   remainingCapital = 10000.0;
   isEntryExpected = true;
   table = [];
-  for (currentIndex = 200; currentIndex < stockData.length; currentIndex++) {
+  for (currentIndex = 27; currentIndex < stockData.length; currentIndex++) {
     if (isEntryExpected) tryEntry();
     else tryExit();
   }
