@@ -127,7 +127,7 @@ function makeExit() {
   table.push(buyRow);
 
   // Register exit point
-  credit = close * positionSize;
+  credit = stockData[currentIndex].close * positionSize;
   debit = 0;
   soldInit = remainingCapital;
   remainingCapital += credit - debit;
