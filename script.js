@@ -78,7 +78,7 @@ function ma(dayCount, yest) {
 	let sum = 0;
 	for (let count = 0; count < dayCount; count++)
 		try {
-		sum += stockData[currentIndex - count - yest].open;
+		sum += stockData[currentIndex - count - yest].close;
 		} catch { }
 	return sum / dayCount;
 }
@@ -91,7 +91,7 @@ function condEntry() {
 	  if (shortMA > longMA)
 		  return 0;
 	  shortMA = ma(shorts, 0);
-	  longMA = ma(longs, 1);
+	  longMA = ma(longs, 0);
 	  if (shortMA > longMA)
 		  return 1;
   } catch { }
@@ -106,7 +106,7 @@ function condExit() {
 	  if (shortMA < longMA)
 		  return 0;
 	  shortMA = ma(shorts, 0);
-	  longMA = ma(longs, 1);
+	  longMA = ma(longs, 0);
 	  if (shortMA < longMA)
 		  return 1;
   } catch { }
