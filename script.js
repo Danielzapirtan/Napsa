@@ -122,7 +122,7 @@ function makeEntry() {
   positionSize = remainingCapital * 0.05 / entryPrice;
 }
 
-// We stop loss
+// We sell
 function makeExit() {
   // Register entry point
   let debit = entryPrice * positionSize;
