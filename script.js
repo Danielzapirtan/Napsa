@@ -3,8 +3,8 @@ const context = canvas.getContext("2d");
 const log = document.getElementById("log");
 let stockData;
 
-const shorts = 50;
-const longs = 200;
+const shorts = 12;
+const longs = 26;
 let positionSize;
 let entryDate;
 let entryPrice;
@@ -77,7 +77,9 @@ tabs.forEach((tab, index) => {
 function ma(dayCount, yest) {
 	let sum = 0;
 	for (let count = 0; count < dayCount; count++)
+		try {
 		sum += stockData[currentIndex - count - yest].open;
+		} catch { }
 	return sum / dayCount;
 }
 
@@ -173,7 +175,7 @@ function getTable() {
   remainingCapital = 10000.0;
   isEntryExpected = true;
   table = [];
-  for (currentIndex = longs + 2; currentIndex < stockData.length; currentIndex++) {
+  for (currentIndex = 0; currentIndex < stockData.length; currentIndex++) {
     if (isEntryExpected) tryEntry();
     else tryExit();
   }
@@ -374,7 +376,7 @@ function downloadJSON() {
     apiToken = apiTokenMetered;
   }
   const currDate = new Date();
-  const currYear = currDate.getFullYear() - 2;
+  const currYear = currDate.getFullYear() - 1;
   const currMonth = currDate.getMonth() + 1;
   const currDayOfMonth = currDate.getDate();
   const date = `${currYear}-${currMonth}-${currDayOfMonth}`;
