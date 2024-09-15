@@ -3,8 +3,8 @@ const context = canvas.getContext("2d");
 const log = document.getElementById("log");
 let stockData;
 
-const shorts = 12;
-const longs = 26;
+const shorts = 50;
+const longs = 200;
 let positionSize;
 let entryDate;
 let entryPrice;
