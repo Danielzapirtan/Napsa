@@ -376,7 +376,7 @@ function downloadJSON() {
     apiToken = apiTokenMetered;
   }
   const currDate = new Date();
-  const currYear = currDate.getFullYear() - 1;
+  const currYear = currDate.getFullYear() - 5;
   const currMonth = currDate.getMonth() + 1;
   const currDayOfMonth = currDate.getDate();
   const date = `${currYear}-${currMonth}-${currDayOfMonth}`;
