@@ -173,7 +173,7 @@ function getTable() {
   remainingCapital = 10000.0;
   isEntryExpected = true;
   table = [];
-  for (currentIndex = longs + 1; currentIndex < stockData.length; currentIndex++) {
+  for (currentIndex = longs + 2; currentIndex < stockData.length; currentIndex++) {
     if (isEntryExpected) tryEntry();
     else tryExit();
   }
