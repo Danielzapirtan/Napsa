@@ -365,7 +365,9 @@ canvas.addEventListener("click", (event) => {
   context.stroke();
 });
 
-function downloadJSON() {
+const selectElement = document.getElementById("stock-picker");
+
+selectElement.addEventListener('change', () => {
   // Show loading indicator
   document.getElementById("loading-indicator").style.display = "block"; // for older browsers without classList
 
@@ -440,7 +442,7 @@ function downloadJSON() {
     //    alert("Load failed!");
       });
   }
-}
+};
 
 function getMockData() {
     const mockData = [];
