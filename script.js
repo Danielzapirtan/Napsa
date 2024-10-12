@@ -424,9 +424,46 @@ function downloadJSON() {
         renderChart();
       })
       .catch((error) => {
-        console.error(error);
+        stockData = getMockData();
+        const stockElement = createTable(data);
+        const dataElement = document.getElementById("Data");
+        removeAllChildren(dataElement);
+        dataElement.appendChild(stockElement);
         document.getElementById("loading-indicator").style.display = "none";
-        alert("Load failed!");
+        renderChart();
+//        console.error(error);
+  //      document.getElementById("loading-indicator").style.display = "none";
+    //    alert("Load failed!");
       });
   }
+}
+
+function getMockData() {
+    const mockData = [];
+    const startDate = new Date();
+    const days = 30; // number of days to generate data for
+    let price = 100; // starting price
+
+    for (let i = 0; i < days; i++) {
+        const date = new Date(startDate);
+        date.setDate(startDate.getDate() - i);
+
+        // Randomly vary the stock price
+        price += (Math.random() - 0.5) * 2; // Adjust the variance as needed
+        const high = price + Math.random() * 5;
+        const low = price - Math.random() * 5;
+        const open = price + Math.random() * 2;
+        const close = price - Math.random() * 2;
+        
+        mockData.push({
+            date: date.toISOString().split('T')[0],
+            open: open.toFixed(2),
+            high: high.toFixed(2),
+            low: low.toFixed(2),
+            close: close.toFixed(2),
+            volume: Math.floor(Math.random() * 1000 + 100)
+        });
+    }
+
+    return mockData;
 }
