@@ -367,7 +367,16 @@ canvas.addEventListener("click", (event) => {
 
 const selectElement = document.getElementById("stock-picker");
 
+let timeout;
+
 selectElement.addEventListener('change', () => {
+  clearTimeout(timeout);
+  timeout = setTimeout(() => {
+	  downloadJSON();
+  }, 300);
+});
+
+function downloadJSON() {
   // Show loading indicator
   document.getElementById("loading-indicator").style.display = "block"; // for older browsers without classList
 
