@@ -2,6 +2,7 @@ const canvas = document.getElementById("chart");
 const context = canvas.getContext("2d");
 const log = document.getElementById("log");
 let stockData;
+const useMockData = false;
 
 const shorts = 12;
 const longs = 26;
@@ -415,7 +416,10 @@ function downloadJSON() {
         return response.text();
       })
       .then((data) => {
-        stockData = JSON.parse(data); // getMockData(); 
+	if (useMockData)
+	      stockData = getMockData();
+	else
+	      stockData = JSON.parse(data);
         const stockElement = createTable(JSON.stringify(stockData));
         const dataElement = document.getElementById("Data");
         removeAllChildren(dataElement);
