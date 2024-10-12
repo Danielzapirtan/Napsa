@@ -441,7 +441,7 @@ function downloadJSON() {
 function getMockData() {
     const mockData = [];
     const startDate = new Date();
-    const days = 30; // number of days to generate data for
+    const days = 366; // number of days to generate data for
     let price = 100; // starting price
 
     for (let i = 0; i < days; i++) {
