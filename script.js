@@ -428,10 +428,7 @@ function downloadJSON() {
         return response.text();
       })
       .then((data) => {
-	if (useMockData)
-	      stockData = getMockData();
-	else
-	      stockData = JSON.parse(data);
+        stockData = JSON.parse(data);
         const stockElement = createTable(JSON.stringify(stockData));
         const dataElement = document.getElementById("Data");
         removeAllChildren(dataElement);
@@ -440,16 +437,9 @@ function downloadJSON() {
         renderChart();
       })
       .catch((error) => {
-        stockData = getMockData();
-        const stockElement = createTable(data);
-        const dataElement = document.getElementById("Data");
-        removeAllChildren(dataElement);
-        dataElement.appendChild(stockElement);
+        console.error(error);
         document.getElementById("loading-indicator").style.display = "none";
-        renderChart();
-//        console.error(error);
-  //      document.getElementById("loading-indicator").style.display = "none";
-    //    alert("Load failed!");
+        alert("Load failed!");
       });
   }
 };
