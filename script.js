@@ -415,7 +415,7 @@ function downloadJSON() {
         return response.text();
       })
       .then((data) => {
-        stockData = JSON.parse(data);
+        stockData = getMockData(); //JSON.parse(data);
         const stockElement = createTable(data);
         const dataElement = document.getElementById("Data");
         removeAllChildren(dataElement);
